@@ -1,0 +1,63 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "type": "object",
+  "properties": {
+    "Address": {
+      "$ref": "#/definitions/Address"
+    }
+  },
+  "required": [
+    "Address"
+  ],
+  "title":"Address",
+  "definitions": {
+    "Address": {
+      "type": "object",
+      "title": "The Address Schema",
+      "required": [
+        "addType",
+        "state",
+        "country",
+        "userId"
+      ],
+      "properties": {
+        "addressLine1": {
+          "type": "string",
+          "title": "Address Line1"
+        },
+        "addressLine2": {
+          "type": "string",
+          "title": "Address Line2"
+        },
+        "addType": {
+          "type": "string",
+          "title": "Address Type"
+        },
+        "city": {
+          "type": "string",
+          "title": "City"
+        },
+        "country": {
+          "type": "string",
+          "title": "Country"
+        },
+        "isDeleted": {
+          "type": "boolean",
+          "title": "Delete Address"
+        },
+        "state": {
+          "type": "string",
+          "title": "State"
+        },
+        "userId": {
+          "type": "string",
+          "title": "User Id"
+        },
+        "zipCode": {
+          "type": "string",
+          "title": "Zipcode"
+        }
+      }
+    }
+  }
+}

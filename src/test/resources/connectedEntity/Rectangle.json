@@ -7,7 +7,7 @@
     }
   },
   "required": [
-    "rectangle"
+    "userName,channel,firstName,lastName"
   ],
   "definitions": {
     "size": {

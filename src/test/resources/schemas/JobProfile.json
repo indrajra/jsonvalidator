@@ -1,0 +1,78 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "type": "object",
+  "properties": {
+    "JobProfile": {
+      "$ref": "#/definitions/JobProfile"
+    }
+  },
+  "required": [
+    "JobProfile"
+  ],
+  "title":"JobProfile",
+  "definitions": {
+    "JobProfile": {
+      "type": "object",
+      "title": "The JobProfile Schema",
+      "required": [
+        "jobName",
+        "joiningDate",
+        "userId"
+      ],
+      "properties": {
+        "addressId": {
+          "type": "string",
+          "title": "Address Id"
+        },
+        "endDate": {
+          "type": "string",
+          "title": "End Date"
+        },
+        "isCurrentJob": {
+          "type": "boolean",
+          "title": "Current Job"
+        },
+        "jobName": {
+          "type": "string",
+          "title": "Job Name"
+        },
+        "joiningDate": {
+          "type": "string",
+          "title": "Joining Date"
+        },
+        "orgId": {
+          "type": "string",
+          "title": "Organisation Id"
+        },
+        "orgName": {
+          "type": "string",
+          "title": "Organisation Name"
+        },
+        "userId": {
+          "type": "string",
+          "title": "User Id"
+        },
+        "isDeleted": {
+          "type": "boolean",
+          "title": "Is Deleted"
+        },
+        "isRejected": {
+          "type": "boolean",
+          "title": "Is Rejected"
+        },
+        "isVerified": {
+          "type": "boolean",
+          "title": "Is Verified"
+        },
+        "verifiedBy": {
+          "type": "string",
+          "title": "Verified By"
+        },
+        "verifiedDate": {
+          "type": "string",
+          "title": "Verified Date"
+        }
+      }
+    }
+  }
+}

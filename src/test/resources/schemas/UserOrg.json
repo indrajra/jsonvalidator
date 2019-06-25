@@ -1,0 +1,59 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "type": "object",
+  "properties": {
+    "UserOrg": {
+      "$ref": "#/definitions/UserOrg"
+    }
+  },
+  "required": [
+    "UserOrg"
+  ],
+  "title":"UserOrg",
+  "definitions": {
+    "UserOrg": {
+      "type": "object",
+      "title": "The UserOrg Schema",
+      "required": [
+        "userId",
+        "organisationId"
+      ],
+      "properties": {
+        "addedBy": {
+          "type": "string",
+          "title": "Added By"
+        },
+        "hashTagId": {
+          "type": "string",
+          "title": "Hash Tag Id"
+        },
+        "organisationId": {
+          "type": "string",
+          "title": "Organisation Id"
+        },
+        "orgJoinDate": {
+          "type": "string",
+          "title": "Organisation Joining Date"
+        },
+        "orgLeftDate": {
+          "type": "string",
+          "title": "Organisation Left Date"
+        },
+        "roles": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Roles"
+        },
+        "userId": {
+          "type": "string",
+          "title": "User Id"
+        },
+        "isDeleted": {
+          "type": "boolean",
+          "title": "Is Deleted"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,166 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "type": "object",
+  "properties": {
+    "request": {
+      "$ref": "#/definitions/User"
+    }
+  },
+  "required": [
+    "request"
+  ],
+  "title":"request",
+  "definitions": {
+    "User": {
+      "$id": "#/properties/request",
+      "type": "object",
+      "title": "The User Schema",
+      "required": [
+        "userName",
+        "firstName",
+        "lastName"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "User ID"
+        },
+        "channel": {
+          "type": "string",
+          "default": "defaultChannel",
+          "title": "User belong to the channel"
+        },
+
+        "countryCode": {
+          "type": "string",
+          "title": "Country code of user"
+        },
+        "currentLoginTime": {
+          "type": "string",
+          "title": "Current login time"
+        },
+        "dob": {
+          "type": "string",
+          "title": "Date of birth"
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "description": "this attribute will have user email",
+          "title": "Email id"
+        },
+        "emailVerified": {
+          "type": "boolean",
+          "title": "Email Verified"
+        },
+        "firstName": {
+          "type": "string",
+          "title": "First name of user"
+        },
+        "lastName": {
+          "type": "string",
+          "title": "Last name of user"
+        },
+        "gender": {
+          "type": "string",
+          "title": "Gender of user"
+        },
+        "isDeleted": {
+          "type": "boolean",
+          "title": "User is deleted"
+        },
+        "lastLoginTime": {
+          "type": "string",
+          "title": "Last login time"
+        },
+        "locationIds": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Location Ids"
+        },
+        "phone": {
+          "type": "string",
+          "maxLength": 10,
+          "description": "this attribute will have user phone number",
+          "title": "Phone number"
+        },
+        "phoneVerified": {
+          "type": "boolean",
+          "title": "Phone Verified"
+        },
+        "rootOrgId": {
+          "type": "string",
+          "title": "Root organisation ID"
+        },
+        "status": {
+          "type": "integer",
+          "description": "this attribute will have user status either is active or Inactive",
+          "title": "Status"
+        },
+        "tncAcceptedOn": {
+          "type": "string",
+          "format": "date-time",
+          "title": "Terms and Conditions Accepted on"
+        },
+        "tncAcceptedVersion": {
+          "type": "string",
+          "title": "Terms and Conditions Accepted Version"
+        },
+        "loginId": {
+          "type": "string",
+          "$comment": "this is not used now",
+          "title": "Login ID"
+        },
+        "userName": {
+          "type": "string",
+          "description": "this attribute will have the user's user name",
+          "title": "User name"
+        },
+        "userType": {
+          "type": "string",
+          "title": "User Type",
+          "enum": ["OTHER","TEACHER"]
+        },
+        "frameWork": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "title": "Id of framework"
+            },
+            "board": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "title": "Board of education"
+            },
+            "gradeLevel": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "title": "Grade Level"
+            },
+            "medium": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "title": "Medium"
+            },
+            "subject": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "title": "Subject"
+            }
+          }
+        }
+      }
+    }
+  },
+  "additionalProperties":false
+}

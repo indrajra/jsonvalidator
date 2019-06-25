@@ -1,0 +1,50 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "type": "object",
+  "properties": {
+    "UserSkills": {
+      "$ref": "#/definitions/UserSkills"
+    }
+  },
+  "required": [
+    "UserSkills"
+  ],
+  "title":"UserSkills",
+  "definitions": {
+    "UserSkills": {
+      "type": "object",
+      "title": "The UserSkills Schema",
+      "required": [
+        "skillName",
+        "userId"
+      ],
+      "properties": {
+        "endorsementCount": {
+          "type": "integer",
+          "title": "Endorsement Id"
+        },
+        "endorsersList": {
+          "items": {
+            "type": "object",
+            "additionalProperties" : {
+              "type" : "string"
+            }
+          },
+          "title": "Endorsers List"
+        },
+        "skillName": {
+          "type": "string",
+          "title": "Skill Name"
+        },
+        "skillNameToLowercase": {
+          "type": "string",
+          "title": "Skill name to lower case"
+        },
+        "userId": {
+          "type": "string",
+          "title": "User Id"
+        }
+      }
+    }
+  }
+}
