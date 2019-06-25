@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "type" : "object",
+  "$comment": "This is going to be the rectangle entity",
+  "properties" : {
+    "history" : {"$ref" : "#/definitions/History" }
+  },
+  "required": ["history"],
+  "definitions" : {
+    "when" : {
+      "type" : "string",
+      "format": "date-time",
+    },
+    "History" : {
+      "type" : "object",
+      "properties" : {
+        "when" : {"$ref" : "#/definitions/when"},
+        "who" : {
+          "type": "string"
+        },
+        "what": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

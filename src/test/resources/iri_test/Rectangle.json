@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "type" : "object",
+  "$comment": "This is going to be the rectangle entity",
+  "properties" : {
+    "rectangle" : {"$ref" : "#/definitions/Rectangle" }
+  },
+  "required": ["rectangle"],
+  "definitions" : {
+    "size" : {
+      "type" : "number",
+      "minimum" : 0
+    },
+    "Rectangle" : {
+      "type" : "object",
+      "properties" : {
+        "l" : {"$ref" : "#/definitions/size"},
+        "b" : {"$ref" : "#/definitions/size"},
+        "material": {
+          "format": "iri"
+        }
+      },
+      "required": ["l", "b", "material"],
+      "additionalProperties": false
+    }
+  }
+}

@@ -1,0 +1,16 @@
+oogstory
+dist
+/.idea
+/*.iml
+*.iml
+*.log
+RUNNING_PID
+/out
+/.idea_modules
+/.classpath
+/.project
+/.settings
+/.target/
+/bin/
+/logs
+.DS_Store
