@@ -9,7 +9,7 @@ import org.junit.Test;
 
 import java.io.InputStream;
 
-public class TestUser {
+public class TestUserSchema {
 
     private Schema schema;
 
@@ -29,25 +29,27 @@ public class TestUser {
     public void testUserSchemaPhoneValidationSuccess() {
 
         String testRequest = "{\n" +
-                "   \"request\":{            \n" +
+                "\t\n" +
+                "\n" +
+                "    \"request\":{                 \n" +
                 "      \"firstName\": \"run1eee\",\n" +
                 "      \"lastName\": \"Kumar\",\n" +
                 "      \"password\": \"password\",\n" +
                 "      \"phone\": \"9878553210\",\n" +
-                "      \"userName\":\"run17eee9999d\",\n" +
+                "      \"userName\":\"run1df7eee9999d\",\n" +
                 "      \"channel\":\"channel_01\",\n" +
-                "      \"phoneVerified\":true,\n" +
-                "      \"userType\":\"TEACHER\"\n" +
-                "    \n" +
-                "}}";
+                "      \"phoneVerified\":true\n" +
+                "    }\n" +
+                "} ";
 
         JSONObject obj = new JSONObject(testRequest);
         try {
             schema.validate(obj);
             Assert.assertTrue(true == true);
         } catch (ValidationException e) {
+            System.out.println(e.getErrorMessage());
             e.getCausingExceptions().stream()
-                    .map(ValidationException::getMessage)
+                    .map(ValidationException::getCausingExceptions)
                     .forEach(System.out::println);
         }
     }

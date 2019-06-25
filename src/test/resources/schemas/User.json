@@ -9,17 +9,12 @@
   "required": [
     "request"
   ],
-  "title":"request",
+  "title": "request",
   "definitions": {
     "User": {
-      "$id": "#/properties/request",
+      "$id": "#/properties/User",
       "type": "object",
       "title": "The User Schema",
-      "required": [
-        "userName",
-        "firstName",
-        "lastName"
-      ],
       "properties": {
         "id": {
           "type": "string",
@@ -30,7 +25,6 @@
           "default": "defaultChannel",
           "title": "User belong to the channel"
         },
-
         "countryCode": {
           "type": "string",
           "title": "Country code of user"
@@ -47,9 +41,11 @@
           "type": "string",
           "format": "email",
           "description": "this attribute will have user email",
-          "title": "Email id"
-        },
+          "title": "Email id",
+          "required": ["emailVerified"]
+      },
         "emailVerified": {
+          "id": "emailVerified",
           "type": "boolean",
           "title": "Email Verified"
         },
@@ -81,11 +77,14 @@
         },
         "phone": {
           "type": "string",
-          "maxLength": 10,
           "description": "this attribute will have user phone number",
-          "title": "Phone number"
+          "title": "Phone number",
+          "required": [
+            "phoneVerified"
+          ]
         },
-        "phoneVerified": {
+          "phoneVerified": {
+          "id":"phoneVerified",
           "type": "boolean",
           "title": "Phone Verified"
         },
@@ -109,7 +108,7 @@
         },
         "loginId": {
           "type": "string",
-          "$comment": "this is not used now",
+          "$comment": "this is not used as of now",
           "title": "Login ID"
         },
         "userName": {
@@ -120,7 +119,10 @@
         "userType": {
           "type": "string",
           "title": "User Type",
-          "enum": ["OTHER","TEACHER"]
+          "enum": [
+            "OTHER",
+            "TEACHER"
+          ]
         },
         "frameWork": {
           "type": "object",
@@ -159,8 +161,19 @@
             }
           }
         }
+      },
+      "required": [
+        "userName",
+        "firstName",
+        "lastName"
+      ],
+      "dependencies": {
+        "email": ["emailVerified"],
+        "emailVerified": ["email"],
+        "phone": ["phoneVerified"],
+        "phoneVerified": ["phone"]
       }
     }
   },
-  "additionalProperties":false
+  "additionalProperties": false
 }
