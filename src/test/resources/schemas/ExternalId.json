@@ -15,8 +15,7 @@
       "type": "object",
       "title": "The Education Schema",
       "required": [
-        "externalId",
-        "userId"
+        "externalId"
       ],
       "properties": {
         "externalId": {

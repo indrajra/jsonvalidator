@@ -9,54 +9,59 @@
   "required": [
     "Education"
   ],
-  "title":"Education",
+  "title": "Education",
   "definitions": {
     "Education": {
-      "type": "object",
+      "type": "array",
+      "uniqueItems": true,
       "title": "The Education Schema",
-      "required": [
-        "name",
-        "yearOfPassing",
-        "userId"
-      ],
-      "properties": {
-        "addressId": {
-          "type": "string",
-          "title": "Address Id"
-        },
-        "degree": {
-          "type": "string",
-          "title": "Degree"
-        },
-        "duration": {
-          "type": "integer",
-          "title": "Duration"
-        },
-        "grade": {
-          "type": "string",
-          "title": "Grade"
-        },
-        "isDeleted": {
-          "type": "boolean",
-          "title": "Is Deleted"
-        },
-        "name": {
-          "type": "string",
-          "title": "Name"
-        },
-        "percentage": {
-          "type": "number",
-          "title": "Percentage"
-        },
-        "userId": {
-          "type": "string",
-          "title": "User Id"
-        },
-        "yearOfPassing": {
-          "type": "integer",
-          "title": "Year Of Passing"
+      "items": {
+
+          "properties": {
+            "addressId": {
+              "type": "string",
+              "title": "Address Id"
+            },
+            "degree": {
+              "type": "string",
+              "title": "Degree"
+            },
+            "duration": {
+              "type": "integer",
+              "title": "Duration"
+            },
+            "grade": {
+              "type": "string",
+              "title": "Grade"
+            },
+            "isDeleted": {
+              "type": "boolean",
+              "title": "Is Deleted"
+            },
+            "name": {
+              "type": "string",
+              "title": "Name"
+            },
+            "percentage": {
+              "type": "number",
+              "title": "Percentage"
+            },
+            "userId": {
+              "type": "string",
+              "title": "User Id"
+            },
+            "yearOfPassing": {
+              "type": "integer",
+              "title": "Year Of Passing"
+            }
+          },
+          "type": "object",
+          "required": [
+            "name",
+            "yearOfPassing",
+            "degree"
+          ]
         }
-      }
+        }
     }
   }
-}

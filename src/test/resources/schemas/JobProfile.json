@@ -16,8 +16,7 @@
       "title": "The JobProfile Schema",
       "required": [
         "jobName",
-        "joiningDate",
-        "userId"
+        "joiningDate"
       ],
       "properties": {
         "addressId": {

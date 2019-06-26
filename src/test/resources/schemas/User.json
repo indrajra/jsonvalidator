@@ -9,7 +9,8 @@
   "required": [
     "request"
   ],
-  "title": "request",
+  "title": "User",
+  "description": "Used for business logic validation, not the db schema",
   "definitions": {
     "User": {
       "$id": "#/properties/User",
@@ -29,6 +30,23 @@
           "type": "string",
           "title": "Country code of user"
         },
+        "address": {
+          "$ref": "file:src/test/resources/schemas/Address.json#/definitions/Address",
+          "description": "this attribute will have user address details"
+        },
+        "jobProfile": {
+          "$ref": "file:src/test/resources/schemas/JobProfile.json#/definitions/JobProfile",
+          "description": "this attribute will have user job profile details"
+        },
+        "externalId": {
+          "$ref": "file:src/test/resources/schemas/ExternalID.json#/definitions/ExternalId"
+        },
+        "education": {
+          "$ref": "file:src/test/resources/schemas/Education.json#/definitions/Education"
+        },
+        "locationCodes": {
+          "$ref": "file:src/test/resources/schemas/Location.json#/definitions/LocationCode"
+        },
         "currentLoginTime": {
           "type": "string",
           "title": "Current login time"
@@ -41,9 +59,8 @@
           "type": "string",
           "format": "email",
           "description": "this attribute will have user email",
-          "title": "Email id",
-          "required": ["emailVerified"]
-      },
+          "title": "Email id"
+        },
         "emailVerified": {
           "id": "emailVerified",
           "type": "boolean",
@@ -77,103 +94,121 @@
         },
         "phone": {
           "type": "string",
+          "pattern": "[789][0-9]{9}",
           "description": "this attribute will have user phone number",
-          "title": "Phone number",
-          "required": [
-            "phoneVerified"
-          ]
+          "title": "Phone number"
         },
-          "phoneVerified": {
-          "id":"phoneVerified",
-          "type": "boolean",
-          "title": "Phone Verified"
-        },
-        "rootOrgId": {
-          "type": "string",
-          "title": "Root organisation ID"
-        },
-        "status": {
-          "type": "integer",
-          "description": "this attribute will have user status either is active or Inactive",
-          "title": "Status"
-        },
-        "tncAcceptedOn": {
-          "type": "string",
-          "format": "date-time",
-          "title": "Terms and Conditions Accepted on"
-        },
-        "tncAcceptedVersion": {
-          "type": "string",
-          "title": "Terms and Conditions Accepted Version"
-        },
-        "loginId": {
-          "type": "string",
-          "$comment": "this is not used as of now",
-          "title": "Login ID"
-        },
-        "userName": {
-          "type": "string",
-          "description": "this attribute will have the user's user name",
-          "title": "User name"
-        },
-        "userType": {
-          "type": "string",
-          "title": "User Type",
-          "enum": [
-            "OTHER",
-            "TEACHER"
-          ]
-        },
-        "frameWork": {
-          "type": "object",
-          "properties": {
-            "id": {
-              "type": "string",
-              "title": "Id of framework"
+      "phoneVerified": {
+        "id": "phoneVerified",
+        "type": "boolean",
+        "title": "Phone Verified"
+      },
+      "rootOrgId": {
+        "type": "string",
+        "title": "Root organisation ID"
+      },
+      "status": {
+        "type": "integer",
+        "description": "this attribute will have user status either is active or Inactive",
+        "title": "Status"
+      },
+      "tncAcceptedOn": {
+        "type": "string",
+        "format": "date-time",
+        "title": "Terms and Conditions Accepted on"
+      },
+      "tncAcceptedVersion": {
+        "type": "string",
+        "title": "Terms and Conditions Accepted Version"
+      },
+      "loginId": {
+        "type": "string",
+        "$comment": "this is not used as of now",
+        "title": "Login ID"
+      },
+      "userName": {
+        "type": "string",
+        "description": "this attribute will have the user's user name",
+        "title": "User name"
+      },
+      "userType": {
+        "type": "string",
+        "title": "User Type",
+        "enum": [
+          "OTHER",
+          "TEACHER"
+        ]
+      },
+      "frameWork": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id of framework"
+          },
+          "board": {
+            "type": "array",
+            "items": {
+              "type": "string"
             },
-            "board": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              },
-              "title": "Board of education"
+            "title": "Board of education"
+          },
+          "gradeLevel": {
+            "type": "array",
+            "items": {
+              "type": "string"
             },
-            "gradeLevel": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              },
-              "title": "Grade Level"
+            "title": "Grade Level"
+          },
+          "medium": {
+            "type": "array",
+            "items": {
+              "type": "string"
             },
-            "medium": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              },
-              "title": "Medium"
+            "title": "Medium"
+          },
+          "subject": {
+            "type": "array",
+            "items": {
+              "type": "string"
             },
-            "subject": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              },
-              "title": "Subject"
-            }
+            "title": "Subject"
           }
         }
-      },
-      "required": [
-        "userName",
-        "firstName",
-        "lastName"
-      ],
-      "dependencies": {
-        "email": ["emailVerified"],
-        "emailVerified": ["email"],
-        "phone": ["phoneVerified"],
-        "phoneVerified": ["phone"]
       }
-    }
-  },
+    },
+    "required": [
+      "userName",
+      "firstName",
+      "lastName"
+    ],
+    "dependencies": {
+      "email": [
+        "emailVerified"
+      ],
+      "emailVerified": [
+        "email"
+      ],
+      "phone": [
+        "phoneVerified"
+      ],
+      "phoneVerified": [
+        "phone"
+      ]
+    },
+    "anyOf": [
+      {
+        "required": [
+          "email"
+        ]
+      },
+      {
+        "required": [
+          "phone"
+        ]
+      }
+    ]
+  }
+},
   "additionalProperties": false
 }

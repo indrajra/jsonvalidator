@@ -17,8 +17,7 @@
       "required": [
         "addType",
         "state",
-        "country",
-        "userId"
+        "country"
       ],
       "properties": {
         "addressLine1": {
