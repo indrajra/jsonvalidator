@@ -16,7 +16,6 @@
       "uniqueItems": true,
       "title": "The Education Schema",
       "items": {
-
           "properties": {
             "addressId": {
               "type": "string",

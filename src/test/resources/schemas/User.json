@@ -30,6 +30,9 @@
           "type": "string",
           "title": "Country code of user"
         },
+        "webPages": {
+          "$ref": "file:src/test/resources/schemas/Webpages.json#/definitions/Webpages"
+        },
         "address": {
           "$ref": "file:src/test/resources/schemas/Address.json#/definitions/Address",
           "description": "this attribute will have user address details"
@@ -78,6 +81,20 @@
           "type": "string",
           "title": "Gender of user"
         },
+        "language": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "uniqueItems": true
+          }
+        },
+        "subject": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "uniqueItems": true
+          }
+        },
         "isDeleted": {
           "type": "boolean",
           "title": "User is deleted"
@@ -86,129 +103,130 @@
           "type": "string",
           "title": "Last login time"
         },
-        "locationIds": {
-          "items": {
-            "type": "string"
-          },
-          "title": "Location Ids"
-        },
         "phone": {
           "type": "string",
           "pattern": "[789][0-9]{9}",
           "description": "this attribute will have user phone number",
           "title": "Phone number"
         },
-      "phoneVerified": {
-        "id": "phoneVerified",
-        "type": "boolean",
-        "title": "Phone Verified"
-      },
-      "rootOrgId": {
-        "type": "string",
-        "title": "Root organisation ID"
-      },
-      "status": {
-        "type": "integer",
-        "description": "this attribute will have user status either is active or Inactive",
-        "title": "Status"
-      },
-      "tncAcceptedOn": {
-        "type": "string",
-        "format": "date-time",
-        "title": "Terms and Conditions Accepted on"
-      },
-      "tncAcceptedVersion": {
-        "type": "string",
-        "title": "Terms and Conditions Accepted Version"
-      },
-      "loginId": {
-        "type": "string",
-        "$comment": "this is not used as of now",
-        "title": "Login ID"
-      },
-      "userName": {
-        "type": "string",
-        "description": "this attribute will have the user's user name",
-        "title": "User name"
-      },
-      "userType": {
-        "type": "string",
-        "title": "User Type",
-        "enum": [
-          "OTHER",
-          "TEACHER"
-        ]
-      },
-      "frameWork": {
-        "type": "object",
-        "properties": {
-          "id": {
+        "grade": {
+          "type": "array",
+          "items": {
             "type": "string",
-            "title": "Id of framework"
-          },
-          "board": {
-            "type": "array",
-            "items": {
-              "type": "string"
+            "uniqueItems": true
+          }
+        },
+        "phoneVerified": {
+          "id": "phoneVerified",
+          "type": "boolean",
+          "title": "Phone Verified"
+        },
+        "rootOrgId": {
+          "type": "string",
+          "title": "Root organisation ID"
+        },
+        "status": {
+          "type": "integer",
+          "description": "this attribute will have user status either is active or Inactive",
+          "title": "Status"
+        },
+        "tncAcceptedOn": {
+          "type": "string",
+          "format": "date-time",
+          "title": "Terms and Conditions Accepted on"
+        },
+        "tncAcceptedVersion": {
+          "type": "string",
+          "title": "Terms and Conditions Accepted Version"
+        },
+        "loginId": {
+          "type": "string",
+          "$comment": "this is not used as of now",
+          "title": "Login ID"
+        },
+        "userName": {
+          "type": "string",
+          "description": "this attribute will have the user's user name",
+          "title": "User name"
+        },
+        "userType": {
+          "type": "string",
+          "title": "User Type",
+          "enum": [
+            "OTHER",
+            "TEACHER"
+          ]
+        },
+        "frameWork": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "title": "Id of framework"
             },
-            "title": "Board of education"
-          },
-          "gradeLevel": {
-            "type": "array",
-            "items": {
-              "type": "string"
+            "board": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "title": "Board of education"
             },
-            "title": "Grade Level"
-          },
-          "medium": {
-            "type": "array",
-            "items": {
-              "type": "string"
+            "gradeLevel": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "title": "Grade Level"
             },
-            "title": "Medium"
-          },
-          "subject": {
-            "type": "array",
-            "items": {
-              "type": "string"
+            "medium": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "title": "Medium"
             },
-            "title": "Subject"
+            "subject": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "title": "Subject"
+            }
           }
         }
-      }
-    },
-    "required": [
-      "userName",
-      "firstName",
-      "lastName"
-    ],
-    "dependencies": {
-      "email": [
-        "emailVerified"
-      ],
-      "emailVerified": [
-        "email"
-      ],
-      "phone": [
-        "phoneVerified"
-      ],
-      "phoneVerified": [
-        "phone"
-      ]
-    },
-    "anyOf": [
-      {
-        "required": [
-          "email"
-        ]
       },
-      {
-        "required": [
+      "required": [
+        "userName",
+        "firstName",
+        "lastName"
+      ],
+      "dependencies": {
+        "email": [
+          "emailVerified"
+        ],
+        "emailVerified": [
+          "email"
+        ],
+        "phone": [
+          "phoneVerified"
+        ],
+        "phoneVerified": [
           "phone"
         ]
-      }
-    ]
-  }
-},
+      },
+      "anyOf": [
+        {
+          "required": [
+            "email"
+          ]
+        },
+        {
+          "required": [
+            "phone"
+          ]
+        }
+      ]
+    }
+  },
   "additionalProperties": false
 }

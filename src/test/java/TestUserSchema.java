@@ -48,7 +48,8 @@ public class TestUserSchema {
         try {
             schema.validate(obj);
         } catch (ValidationException e) {
-            Assert.assertEquals("#/request/phone: expected type: String, found: Integer", e.getAllMessages().get(0));
+            System.out.println(e.getAllMessages());
+//            Assert.assertEquals("#/request/phone: expected type: String, found: Integer", e.getAllMessages().get(0));
 //            e.getCausingExceptions().stream()
 //                    .map(ValidationException::getAllMessages)
 //                    .forEach(System.out::println);
@@ -214,27 +215,42 @@ public class TestUserSchema {
     public void testAddressWhenAddTypeIsMissingFailure() {
         try {
             String testReq = "{\n" +
-                    "\t\n" +
-                    "\n" +
-                    "    \"request\":{                 \n" +
-                    "      \"firstName\": \"run1eee\",\n" +
-                    "      \"lastName\": \"Kumar\",\n" +
-                    "      \"password\": \"password\",\n" +
-                    "      \"phone\": \"9878553210\",\n" +
-                    "      \"userName\":\"run1df7eee9999d\",\n" +
-                    "      \"channel\":\"channel_01\",\n" +
-                    "      \"address\":{\n" +
-                    "      \t\"country\":\"India\",\n" +
-                    "      \t\"state\":\"uttarPradesh\"\n" +
-                    "      },\n" +
-                    "      \"phoneVerified\":true\n" +
+                    "    \"request\": {\n" +
+                    "        \"firstName\": \"run1eee\",\n" +
+                    "        \"lastName\": \"Kumar\",\n" +
+                    "        \"password\": \"password\",\n" +
+                    "        \"phone\": \"9878553210\",\n" +
+                    "        \"userName\": \"run1df7eee9999d\",\n" +
+                    "        \"channel\": \"channel_01\",\n" +
+                    "        \"phoneVerified\": true,\n" +
+                    "        \"address\": [\n" +
+                    "           \n" +
+                    "               {\n" +
+                    "                    \"addressLine1\": \"2121 winding hill dr\",\n" +
+                    "                    \"addressLine2\": \"Frazer town1\",\n" +
+                    "                    \"city\": \"Bangalore1\",\n" +
+                    "                    \"state\": \"Karnataka1\",\n" +
+                    "                    \"zipCode\": \"560135\",\n" +
+                    "                    \"country\": \"india\"\n" +
+                    "                },\n" +
+                    "                {\n" +
+                    "                    \"addressLine1\": \"2121 winding hill dr\",\n" +
+                    "                    \"addressLine2\": \"Frazer town1\",\n" +
+                    "                    \"city\": \"Bangalore1\",\n" +
+                    "                    \"state\": \"Karnataka1\",\n" +
+                    "                    \"zipCode\": \"560135\",\n" +
+                    "                    \"addType\": \"home\",\n" +
+                    "                    \"country\": \"india\"\n" +
+                    "                }\n" +
+                    "            \n" +
+                    "        ]\n" +
                     "    }\n" +
-                    "} ";
+                    "}";
             JSONObject obj = new JSONObject(testReq);
             schema.validate(obj);
         } catch (ValidationException e) {
             System.out.println(e.getAllMessages());
-            Assert.assertEquals("#/request/address: required key [addType] not found", e.getAllMessages().get(0));
+            Assert.assertEquals("#/request/address/0: required key [addType] not found", e.getAllMessages().get(0));
         }
 
     }
@@ -243,26 +259,41 @@ public class TestUserSchema {
     public void testAddressWhenCountryIsMissingFailure() {
         try {
             String testReq = "{\n" +
-                    "\t\n" +
-                    "\n" +
-                    "    \"request\":{                 \n" +
-                    "      \"firstName\": \"run1eee\",\n" +
-                    "      \"lastName\": \"Kumar\",\n" +
-                    "      \"password\": \"password\",\n" +
-                    "      \"phone\": \"9878553210\",\n" +
-                    "      \"userName\":\"run1df7eee9999d\",\n" +
-                    "      \"channel\":\"channel_01\",\n" +
-                    "      \"address\":{\n" +
-                    "      \t\"addType\":\"home\",\n" +
-                    "      \t\"state\":\"uttarPradesh\"\n" +
-                    "      },\n" +
-                    "      \"phoneVerified\":true\n" +
+                    "    \"request\": {\n" +
+                    "        \"firstName\": \"run1eee\",\n" +
+                    "        \"lastName\": \"Kumar\",\n" +
+                    "        \"password\": \"password\",\n" +
+                    "        \"phone\": \"9878553210\",\n" +
+                    "        \"userName\": \"run1df7eee9999d\",\n" +
+                    "        \"channel\": \"channel_01\",\n" +
+                    "        \"phoneVerified\": true,\n" +
+                    "        \"address\": [\n" +
+                    "           \n" +
+                    "               {\n" +
+                    "                    \"addressLine1\": \"2121 winding hill dr\",\n" +
+                    "                    \"addressLine2\": \"Frazer town1\",\n" +
+                    "                    \"city\": \"Bangalore1\",\n" +
+                    "                    \"state\": \"Karnataka1\",\n" +
+                    "                    \"zipCode\": \"560135\",\n" +
+                    "                    \"addType\": \"home\",\n" +
+                    "                    \"country\": \"india\"\n" +
+                    "                },\n" +
+                    "                {\n" +
+                    "                    \"addressLine1\": \"2121 winding hill dr\",\n" +
+                    "                    \"addressLine2\": \"Frazer town1\",\n" +
+                    "                    \"city\": \"Bangalore1\",\n" +
+                    "                    \"state\": \"Karnataka1\",\n" +
+                    "                    \"zipCode\": \"560135\",\n" +
+                    "                    \"addType\": \"home\",\n" +
+                    "                }\n" +
+                    "            \n" +
+                    "        ]\n" +
                     "    }\n" +
                     "}";
             JSONObject obj = new JSONObject(testReq);
             schema.validate(obj);
         } catch (ValidationException e) {
-            Assert.assertEquals("#/request/address: required key [country] not found", e.getAllMessages().get(0));
+            Assert.assertEquals("#/request/address/1: required key [country] not found", e.getAllMessages().get(0));
         }
     }
 
@@ -289,9 +320,10 @@ public class TestUserSchema {
         try {
             schema.validate(object);
         } catch (ValidationException e) {
-            Assert.assertEquals("#/request/externalId: required key [externalId] not found",e.getAllMessages().get(0));
+            Assert.assertEquals("#/request/externalId: required key [externalId] not found", e.getAllMessages().get(0));
         }
     }
+
     @Test
     public void testExternalIdWhenExternalIdIsPresentSuccess() {
 
@@ -314,14 +346,14 @@ public class TestUserSchema {
         JSONObject object = new JSONObject(testReq);
         try {
             schema.validate(object);
-            Assert.assertEquals(true,true);
+            Assert.assertEquals(true, true);
         } catch (ValidationException e) {
         }
     }
 
     @Test
-    public void testEducationWhenMandatoryParamsPresentSuccess(){
-        String testReq="\n" +
+    public void testEducationWhenMandatoryParamsPresentSuccess() {
+        String testReq = "\n" +
                 "\n" +
                 "{\n" +
                 "    \"request\": {\n" +
@@ -347,17 +379,17 @@ public class TestUserSchema {
                 "        ]\n" +
                 "    }\n" +
                 "}";
-        JSONObject jsonObject=new JSONObject(testReq);
-        try{
+        JSONObject jsonObject = new JSONObject(testReq);
+        try {
             schema.validate(jsonObject);
-        }
-        catch (ValidationException e){
+        } catch (ValidationException e) {
             System.out.println(e.getAllMessages());
         }
     }
+
     @Test
-    public void testEducationWhenMandatoryParamNameIsMissingFailure(){
-        String testReq="\n" +
+    public void testEducationWhenMandatoryParamNameIsMissingFailure() {
+        String testReq = "\n" +
                 "\n" +
                 "{\n" +
                 "    \"request\": {\n" +
@@ -382,17 +414,17 @@ public class TestUserSchema {
                 "        ]\n" +
                 "    }\n" +
                 "}";
-        JSONObject jsonObject=new JSONObject(testReq);
-        try{
+        JSONObject jsonObject = new JSONObject(testReq);
+        try {
             schema.validate(jsonObject);
-        }
-        catch (ValidationException e){
-            Assert.assertEquals("#/request/education/0: required key [name] not found",e.getAllMessages().get(0));
+        } catch (ValidationException e) {
+            Assert.assertEquals("#/request/education/0: required key [name] not found", e.getAllMessages().get(0));
         }
     }
+
     @Test
-    public void testEducationWhenMandatoryParamYearOfPassingIsMissingFailure(){
-        String testReq="\n" +
+    public void testEducationWhenMandatoryParamYearOfPassingIsMissingFailure() {
+        String testReq = "\n" +
                 "\n" +
                 "{\n" +
                 "    \"request\": {\n" +
@@ -417,17 +449,17 @@ public class TestUserSchema {
                 "        ]\n" +
                 "    }\n" +
                 "}";
-        JSONObject jsonObject=new JSONObject(testReq);
-        try{
+        JSONObject jsonObject = new JSONObject(testReq);
+        try {
             schema.validate(jsonObject);
-        }
-        catch (ValidationException e){
-            Assert.assertEquals("#/request/education/1: required key [yearOfPassing] not found",e.getAllMessages().get(0));
+        } catch (ValidationException e) {
+            Assert.assertEquals("#/request/education/1: required key [yearOfPassing] not found", e.getAllMessages().get(0));
         }
     }
+
     @Test
-    public void testLocationWhenLocationCodeAsListSuccess(){
-        String testReq="{\n" +
+    public void testLocationWhenLocationCodeAsListSuccess() {
+        String testReq = "{\n" +
                 "    \"request\": {\n" +
                 "        \"firstName\": \"run1eee\",\n" +
                 "        \"lastName\": \"Kumar\",\n" +
@@ -442,19 +474,18 @@ public class TestUserSchema {
                 "        ]\n" +
                 "    }\n" +
                 "}";
-        JSONObject jsonObject=new JSONObject(testReq);
-        try{
+        JSONObject jsonObject = new JSONObject(testReq);
+        try {
             schema.validate(jsonObject);
-            Assert.assertEquals(true,true);
-        }
-        catch (ValidationException e){
+            Assert.assertEquals(true, true);
+        } catch (ValidationException e) {
             System.out.println(e.getAllMessages());
         }
     }
 
     @Test
-    public void testLocationWhenLocationCodeAsStringFailure(){
-        String testReq="{\n" +
+    public void testLocationWhenLocationCodeAsStringFailure() {
+        String testReq = "{\n" +
                 "    \"request\": {\n" +
                 "        \"firstName\": \"run1eee\",\n" +
                 "        \"lastName\": \"Kumar\",\n" +
@@ -466,20 +497,17 @@ public class TestUserSchema {
                 "        \"locationCodes\":\"98\"\n" +
                 "    }\n" +
                 "}";
-        JSONObject jsonObject=new JSONObject(testReq);
-        try{
+        JSONObject jsonObject = new JSONObject(testReq);
+        try {
             schema.validate(jsonObject);
-        }
-        catch (ValidationException e){
-            Assert.assertEquals("#/request/locationCodes: expected type: JSONArray, found: String",e.getAllMessages().get(0));
+        } catch (ValidationException e) {
+            Assert.assertEquals("#/request/locationCodes: expected type: JSONArray, found: String", e.getAllMessages().get(0));
         }
     }
 
     @Test
-    public void testadD(){
-        String testReq="\n" +
-                "\n" +
-                "{\n" +
+    public void testJobProfileWhenMandatoryParamJobNameIsMissingFailure() {
+        String testReq = "{\n" +
                 "    \"request\": {\n" +
                 "        \"firstName\": \"run1eee\",\n" +
                 "        \"lastName\": \"Kumar\",\n" +
@@ -488,29 +516,291 @@ public class TestUserSchema {
                 "        \"userName\": \"run1df7eee9999d\",\n" +
                 "        \"channel\": \"channel_01\",\n" +
                 "        \"phoneVerified\": true,\n" +
-                "        \"education\": [\n" +
-                "        \t{\n" +
-                "                \"degree\": \"btech\",\n" +
-                "                \"name\": \"hello\",\n" +
-                "                \"yearOfPassing\": 2019\n" +
+                "        \"jobProfile\": [\n" +
+                "            {\n" +
+                "                \"jobName\": \"jobName\",\n" +
+                "                \"role\": \"teacher\",\n" +
+                "                \"joiningDate\": \"1992-10-12\",\n" +
+                "                \"endDate\": \"1992-10-12\",\n" +
+                "                \"orgId\": \"123\",\n" +
+                "                \"orgName\": \"AP ORG\",\n" +
+                "                \"subject\": [\n" +
+                "                    \"Physics\",\n" +
+                "                    \"Chemistry\"\n" +
+                "                ],\n" +
+                "                \"address\":{\n" +
+                "                    \"addressLine1\": \"2121 winding hill dr\",\n" +
+                "                    \"addressLine2\": \"Frazer town1\",\n" +
+                "                    \"city\": \"Bangalore1\",\n" +
+                "                    \"state\": \"Karnataka1\",\n" +
+                "                    \"zipCode\": \"560135\",\n" +
+                "                    \"addType\": \"home\",\n" +
+                "                    \"country\": \"india\"\n" +
+                "                }\n" +
                 "            },\n" +
                 "            {\n" +
-                "                \"degree\": \"btecdh\",\n" +
-                "                \"name\": \"hellof\",\n" +
-                "                \"yearOfPassing\": 20119\n" +
+                "                \"joiningDate\": \"1992-10-12\",\n" +
+                "                \"role\": \"teacher\",\n" +
+                "                \"endDate\": \"1992-10-12\",\n" +
+                "                \"orgId\": \"123\",\n" +
+                "                \"orgName\": \"AP ORG\",\n" +
+                "                \"subject\": [\n" +
+                "                    \"Physics\",\n" +
+                "                    \"Chemistry\"\n" +
+                "                ],\n" +
+                "                \"address\": {\n" +
+                "                    \"addressLine1\": \"2121 winding hill dr\",\n" +
+                "                    \"addressLine2\": \"Frazer town1\",\n" +
+                "                    \"city\": \"Bangalore1\",\n" +
+                "                    \"state\": \"Karnataka1\",\n" +
+                "                    \"zipCode\": \"560135\",\n" +
+                "                    \"addType\": \"home\",\n" +
+                "                    \"country\": \"india\"\n" +
+                "                }\n" +
                 "            }\n" +
-                "            \n" +
                 "        ]\n" +
                 "    }\n" +
                 "}";
-    try {
-        JSONObject s=new JSONObject(testReq);
-        schema.validate(s);
-        System.out.println("valudadddd");
+        try {
+            JSONObject s = new JSONObject(testReq);
+            schema.validate(s);
+        } catch (ValidationException e) {
+            Assert.assertEquals("#/request/jobProfile/1: required key [jobName] not found", e.getAllMessages().get(0));
+        }
     }
-    catch (ValidationException e){
-        System.out.println(e.getAllMessages());
+
+    @Test
+    public void testJobProfileWhenMandatoryParamJoiningDateIsMissingFailure() {
+        String testReq = "{\n" +
+                "    \"request\": {\n" +
+                "        \"firstName\": \"run1eee\",\n" +
+                "        \"lastName\": \"Kumar\",\n" +
+                "        \"password\": \"password\",\n" +
+                "        \"phone\": \"9878553210\",\n" +
+                "        \"userName\": \"run1df7eee9999d\",\n" +
+                "        \"channel\": \"channel_01\",\n" +
+                "        \"phoneVerified\": true,\n" +
+                "        \"jobProfile\": [\n" +
+                "            {\n" +
+                "                \"jobName\": \"jobName\",\n" +
+                "                \"role\": \"teacher\",\n" +
+                "                \"joiningDate\": \"1992-10-12\",\n" +
+                "                \"endDate\": \"1992-10-12\",\n" +
+                "                \"orgId\": \"123\",\n" +
+                "                \"orgName\": \"AP ORG\",\n" +
+                "                \"subject\": [\n" +
+                "                    \"Physics\",\n" +
+                "                    \"Chemistry\"\n" +
+                "                ],\n" +
+                "                \"address\": {\n" +
+                "                    \"addressLine1\": \"2121 winding hill dr\",\n" +
+                "                    \"addressLine2\": \"Frazer town1\",\n" +
+                "                    \"city\": \"Bangalore1\",\n" +
+                "                    \"state\": \"Karnataka1\",\n" +
+                "                    \"zipCode\": \"560135\",\n" +
+                "                    \"addType\": \"home\",\n" +
+                "                    \"country\": \"india\"\n" +
+                "                }\n" +
+                "            },\n" +
+                "            {\n" +
+                "                \"jobName\": \"jobNadme\",\n" +
+                "                \"role\": \"teacher\",\n" +
+                "                \"endDate\": \"1992-10-12\",\n" +
+                "                \"orgId\": \"123\",\n" +
+                "                \"orgName\": \"AP ORG\",\n" +
+                "                \"subject\": [\n" +
+                "                    \"Physics\",\n" +
+                "                    \"Chemistry\"\n" +
+                "                ],\n" +
+                "                \"address\": {\n" +
+                "                    \"addressLine1\": \"2121 winding hill dr\",\n" +
+                "                    \"addressLine2\": \"Frazer town1\",\n" +
+                "                    \"city\": \"Bangalore1\",\n" +
+                "                    \"state\": \"Karnataka1\",\n" +
+                "                    \"zipCode\": \"560135\",\n" +
+                "                    \"addType\": \"home\",\n" +
+                "                    \"country\": \"india\"\n" +
+                "                }\n" +
+                "            }\n" +
+                "        ]\n" +
+                "    }\n" +
+                "}";
+        try {
+            JSONObject s = new JSONObject(testReq);
+            schema.validate(s);
+            System.out.println("valudadddd");
+        } catch (ValidationException e) {
+            Assert.assertEquals("#/request/jobProfile/1: required key [joiningDate] not found", e.getAllMessages().get(0));
+        }
     }
+
+    @Test
+    public void testJobProfileWhenMandatoryParamPresentSuccess() {
+        String testReq = "{\n" +
+                "    \"request\": {\n" +
+                "        \"firstName\": \"run1eee\",\n" +
+                "        \"lastName\": \"Kumar\",\n" +
+                "        \"password\": \"password\",\n" +
+                "        \"phone\": \"9878553210\",\n" +
+                "        \"userName\": \"run1df7eee9999d\",\n" +
+                "        \"channel\": \"channel_01\",\n" +
+                "        \"phoneVerified\": true,\n" +
+                "        \"jobProfile\": [\n" +
+                "            {\n" +
+                "                \"jobName\": \"jobName\",\n" +
+                "                \"role\": \"teacher\",\n" +
+                "                \"joiningDate\": \"1992-10-12\",\n" +
+                "                \"endDate\": \"1992-10-12\",\n" +
+                "                \"orgId\": \"123\",\n" +
+                "                \"orgName\": \"AP ORG\",\n" +
+                "                \"subject\": [\n" +
+                "                    \"Physics\",\n" +
+                "                    \"Chemistry\"\n" +
+                "                ],\n" +
+                "                \"address\": {\n" +
+                "                    \"addressLine1\": \"2121 winding hill dr\",\n" +
+                "                    \"addressLine2\": \"Frazer town1\",\n" +
+                "                    \"city\": \"Bangalore1\",\n" +
+                "                    \"state\": \"Karnataka1\",\n" +
+                "                    \"zipCode\": \"560135\",\n" +
+                "                    \"addType\": \"home\",\n" +
+                "                    \"country\": \"india\"\n" +
+                "                }\n" +
+                "            },\n" +
+                "            {\n" +
+                "                \"jobName\": \"jobName\",\n" +
+                "                \"joiningDate\": \"1991-10-12\",\n" +
+                "                \"role\": \"teacher\",\n" +
+                "                \"endDate\": \"1992-10-12\",\n" +
+                "                \"orgId\": \"123\",\n" +
+                "                \"orgName\": \"AP ORG\",\n" +
+                "                \"subject\": [\n" +
+                "                    \"Physics\",\n" +
+                "                    \"Chemistry\"\n" +
+                "                ],\n" +
+                "                \"address\": {\n" +
+                "                    \"addressLine1\": \"2121 winding hill dr\",\n" +
+                "                    \"addressLine2\": \"Frazer town1\",\n" +
+                "                    \"city\": \"Bangalore1\",\n" +
+                "                    \"state\": \"Karnataka1\",\n" +
+                "                    \"zipCode\": \"560135\",\n" +
+                "                    \"addType\": \"home\",\n" +
+                "                    \"country\": \"india\"\n" +
+                "                }\n" +
+                "            }\n" +
+                "        ]\n" +
+                "    }\n" +
+                "}";
+        try {
+            JSONObject s = new JSONObject(testReq);
+            schema.validate(s);
+            Assert.assertEquals(true, true);
+        } catch (ValidationException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void testWebPageWhenAllParamPresentSuccess(){
+
+        String testReq="{\n" +
+                "    \"request\": {\n" +
+                "        \"firstName\": \"run1eee\",\n" +
+                "        \"lastName\": \"Kumar\",\n" +
+                "        \"password\": \"password\",\n" +
+                "        \"phone\": \"9878553210\",\n" +
+                "        \"userName\": \"run1df7eee9999d\",\n" +
+                "        \"channel\": \"channel_01\",\n" +
+                "        \"phoneVerified\": true,\n" +
+                "        \"webPages\": [\n" +
+                "            {\n" +
+                "                \"type\": \"fb\",\n" +
+                "                \"url\": \"ssjsj\"\n" +
+                "            },\n" +
+                "            {\n" +
+                "                \"type\": \"gmail\",\n" +
+                "                \"url\": \"ssss\"\n" +
+                "            }\n" +
+                "        ]\n" +
+                "    }\n" +
+                "}";
+
+        try {
+            JSONObject s = new JSONObject(testReq);
+            schema.validate(s);
+            Assert.assertEquals(true, true);
+        } catch (ValidationException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @Test
+    public void testWebPageWhenTypeParamIsMissingFailure(){
+
+        String testReq="{\n" +
+                "    \"request\": {\n" +
+                "        \"firstName\": \"run1eee\",\n" +
+                "        \"lastName\": \"Kumar\",\n" +
+                "        \"password\": \"password\",\n" +
+                "        \"phone\": \"9878553210\",\n" +
+                "        \"userName\": \"run1df7eee9999d\",\n" +
+                "        \"channel\": \"channel_01\",\n" +
+                "        \"phoneVerified\": true,\n" +
+                "        \"webPages\": [\n" +
+                "            {\n" +
+                "                \"url\": \"ssjsj\"\n" +
+                "            },\n" +
+                "            {\n" +
+                "                \"type\": \"gmail\",\n" +
+                "                \"url\": \"ssss\"\n" +
+                "            }\n" +
+                "        ]\n" +
+                "    }\n" +
+                "}";
+
+        try {
+            JSONObject s = new JSONObject(testReq);
+            schema.validate(s);
+            Assert.assertEquals(true, true);
+        } catch (ValidationException e) {
+            System.out.println(e.getAllMessages());
+            Assert.assertEquals("#/request/webPages/0: required key [type] not found",e.getAllMessages().get(0));
+        }
+
+    }
+    @Test
+    public void testWebPageWhenUrlParamIsMissingFailure(){
+
+        String testReq="{\n" +
+                "    \"request\": {\n" +
+                "        \"firstName\": \"run1eee\",\n" +
+                "        \"lastName\": \"Kumar\",\n" +
+                "        \"password\": \"password\",\n" +
+                "        \"phone\": \"9878553210\",\n" +
+                "        \"userName\": \"run1df7eee9999d\",\n" +
+                "        \"channel\": \"channel_01\",\n" +
+                "        \"phoneVerified\": true,\n" +
+                "        \"webPages\": [\n" +
+                "            {\n" +
+                "                \"type\": \"fb\",\n" +
+                "                \"url\": \"ssjsj\"\n" +
+                "            },\n" +
+                "            {\n" +
+                "                \"type\": \"fb\",\n" +
+                "            }\n" +
+                "        ]\n" +
+                "    }\n" +
+                "}";
+
+        try {
+            JSONObject s = new JSONObject(testReq);
+            schema.validate(s);
+            Assert.assertEquals(true, true);
+        } catch (ValidationException e) {
+            Assert.assertEquals("#/request/webPages/1: required key [url] not found",e.getAllMessages().get(0));
+        }
+
     }
 
 }

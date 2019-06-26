@@ -9,67 +9,108 @@
   "required": [
     "JobProfile"
   ],
-  "title":"JobProfile",
+  "title": "JobProfile",
   "definitions": {
     "JobProfile": {
-      "type": "object",
+      "type": "array",
       "title": "The JobProfile Schema",
-      "required": [
-        "jobName",
-        "joiningDate"
-      ],
-      "properties": {
-        "addressId": {
-          "type": "string",
-          "title": "Address Id"
-        },
-        "endDate": {
-          "type": "string",
-          "title": "End Date"
-        },
-        "isCurrentJob": {
-          "type": "boolean",
-          "title": "Current Job"
-        },
-        "jobName": {
-          "type": "string",
-          "title": "Job Name"
-        },
-        "joiningDate": {
-          "type": "string",
-          "title": "Joining Date"
-        },
-        "orgId": {
-          "type": "string",
-          "title": "Organisation Id"
-        },
-        "orgName": {
-          "type": "string",
-          "title": "Organisation Name"
-        },
-        "userId": {
-          "type": "string",
-          "title": "User Id"
-        },
-        "isDeleted": {
-          "type": "boolean",
-          "title": "Is Deleted"
-        },
-        "isRejected": {
-          "type": "boolean",
-          "title": "Is Rejected"
-        },
-        "isVerified": {
-          "type": "boolean",
-          "title": "Is Verified"
-        },
-        "verifiedBy": {
-          "type": "string",
-          "title": "Verified By"
-        },
-        "verifiedDate": {
-          "type": "string",
-          "title": "Verified Date"
+      "items": {
+        "type": "object",
+        "required": [
+          "jobName",
+          "joiningDate"
+        ],
+        "properties": {
+          "endDate": {
+            "type": "string",
+            "title": "End Date"
+          },
+          "isCurrentJob": {
+            "type": "boolean",
+            "title": "Current Job"
+          },
+          "jobName": {
+            "type": "string",
+            "title": "Job Name"
+          },
+          "joiningDate": {
+            "type": "string",
+            "title": "Joining Date"
+          },
+          "orgId": {
+            "type": "string",
+            "title": "Organisation Id"
+          },
+          "orgName": {
+            "type": "string",
+            "title": "Organisation Name"
+          },
+          "userId": {
+            "type": "string",
+            "title": "User Id"
+          },
+          "isDeleted": {
+            "type": "boolean",
+            "title": "Is Deleted"
+          },
+          "isRejected": {
+            "type": "boolean",
+            "title": "Is Rejected"
+          },
+          "isVerified": {
+            "type": "boolean",
+            "title": "Is Verified"
+          },
+          "verifiedBy": {
+            "type": "string",
+            "title": "Verified By"
+          },
+          "verifiedDate": {
+            "type": "string",
+            "title": "Verified Date"
+          },
+          "address": {
+            "type": "object",
+            "uniqueItems": true,
+            "properties": {
+              "addressLine1": {
+                "type": "string",
+                "title": "Address Line1"
+              },
+              "addressLine2": {
+                "type": "string",
+                "title": "Address Line2"
+              },
+              "addType": {
+                "type": "string",
+                "title": "Address Type"
+              },
+              "city": {
+                "type": "string",
+                "title": "City"
+              },
+              "country": {
+                "type": "string",
+                "title": "Country"
+              },
+              "isDeleted": {
+                "type": "boolean",
+                "title": "Delete Address"
+              },
+              "state": {
+                "type": "string",
+                "title": "State"
+              },
+              "userId": {
+                "type": "string",
+                "title": "User Id"
+              },
+              "zipCode": {
+                "type": "string",
+                "title": "Zipcode"
+              }
+            }
+          }
         }
       }
     }

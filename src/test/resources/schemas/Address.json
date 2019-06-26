@@ -12,49 +12,52 @@
   "title":"Address",
   "definitions": {
     "Address": {
-      "type": "object",
+      "type": "array",
       "title": "The Address Schema",
-      "required": [
-        "addType",
-        "state",
-        "country"
-      ],
-      "properties": {
-        "addressLine1": {
-          "type": "string",
-          "title": "Address Line1"
-        },
-        "addressLine2": {
-          "type": "string",
-          "title": "Address Line2"
-        },
-        "addType": {
-          "type": "string",
-          "title": "Address Type"
-        },
-        "city": {
-          "type": "string",
-          "title": "City"
-        },
-        "country": {
-          "type": "string",
-          "title": "Country"
-        },
-        "isDeleted": {
-          "type": "boolean",
-          "title": "Delete Address"
-        },
-        "state": {
-          "type": "string",
-          "title": "State"
-        },
-        "userId": {
-          "type": "string",
-          "title": "User Id"
-        },
-        "zipCode": {
-          "type": "string",
-          "title": "Zipcode"
+      "items":{
+        "type": "object",
+        "required": [
+          "addType",
+          "state",
+          "country"
+        ],
+        "properties": {
+          "addressLine1": {
+            "type": "string",
+            "title": "Address Line1"
+          },
+          "addressLine2": {
+            "type": "string",
+            "title": "Address Line2"
+          },
+          "addType": {
+            "type": "string",
+            "title": "Address Type"
+          },
+          "city": {
+            "type": "string",
+            "title": "City"
+          },
+          "country": {
+            "type": "string",
+            "title": "Country"
+          },
+          "isDeleted": {
+            "type": "boolean",
+            "title": "Delete Address"
+          },
+          "state": {
+            "type": "string",
+            "title": "State"
+          },
+          "userId": {
+            "type": "string",
+            "title": "User Id"
+          },
+          "zipCode": {
+            "type": "string",
+            "title": "Zipcode"
+          }
         }
       }
     }
